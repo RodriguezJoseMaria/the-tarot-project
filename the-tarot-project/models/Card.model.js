@@ -2,14 +2,15 @@ const { Schema, model } = require("mongoose");
 
 const cardSchema = new Schema(
     {
-        nameofcard:{
+        nameCard:{
             type: String,
             },   
+
         categories: {
              type: String,
              },
 
-        starsign: { 
+        starSign: { 
             type: String,
             } ,
 
