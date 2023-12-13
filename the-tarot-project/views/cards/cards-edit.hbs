@@ -1,0 +1,30 @@
+<h2>
+  Edit Card {{ title }}
+</h2>
+
+<form action="/cards/edit" method="post">
+
+  <input type="hidden" name="id" value="{{ id }}">
+
+   <label> Name of card:
+    <input type="text" name="namecard" value="{{ namecard }}" />
+  </label>
+
+  <label> Categories:
+    <input type="text" name="categories" value="{{ categories }}" />
+  </label>
+
+  <label> Star Sing:
+    <input type="text" name="starsign" value="{{ starsign }}" />
+  </label>
+
+  <label> Description:
+    <input type="text" name="description" value="{{ description }}" />
+  </label>
+
+  <button type="submit"> Edit </button>
+</form>
+
+<hr>
+
+<a href="/cards/{{id}}">Cancel</a>
