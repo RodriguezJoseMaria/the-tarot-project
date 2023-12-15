@@ -2,21 +2,22 @@ const { Schema, model } = require("mongoose");
 
 const cardSchema = new Schema(
     {
-        nameCard:{
+        nameCard: {
             type: String,
-            },   
+            required: true,
+        },
 
         categories: {
-             type: String,
-             },
-
-        starSign: { 
             type: String,
-            } ,
+        },
 
-        description: { 
+        starSign: {
+            type: String,
+        },
+
+        description: {
             type: String
-         },
+        },
     },
     {
         timestamps: true
