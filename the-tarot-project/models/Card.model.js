@@ -11,10 +11,6 @@ const cardSchema = new Schema(
             type: String,
         },
 
-        starSign: {
-            type: String,
-        },
-
         description: {
             type: String
         },

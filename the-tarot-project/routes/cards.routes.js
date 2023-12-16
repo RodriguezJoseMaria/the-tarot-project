@@ -15,8 +15,8 @@ router.get('/create', (req, res) => {
 });
 
 router.post('/create', (req, res) => {
-  const { nameCard, categories, starSign, description } = req.body
-  Card.create({ nameCard, categories, starSign, description }).then((newCards) => {
+  const { nameCard, categories, description } = req.body
+  Card.create({ nameCard, categories, description }).then((newCards) => {
     // console.log(`Your Tarot card has been created`)
     res.json(newCards)
     // res.redirect('/cards');
@@ -38,9 +38,9 @@ router.get('/:id/edit', (req, res) => {
 });
 
 router.post('/:id/edit', (req, res) => {
-  const { nameCard, categories, starSign, description } = req.body
+  const { nameCard, categories, description } = req.body
   const { id } = req.params;
-  Card.findByIdAndUpdate(id, { nameCard, categories, starSign, description }, { new: true })
+  Card.findByIdAndUpdate(id, { nameCard, categories, description }, { new: true })
     .then(updateCardFromDB => {
       res.json(updateCardFromDB);
       // res.render('cards/cards-edit', {updateCardFromDB});
