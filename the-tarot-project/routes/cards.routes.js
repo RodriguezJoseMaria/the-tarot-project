@@ -16,16 +16,20 @@ router.get('/create', (req, res) => {
 
 router.post('/create', (req, res) => {
   const { numberCard, nameCard, categories, description } = req.body
-  Card.create({ numberCard, nameCard, categories, description }).then((newCards) => {
+
+  // Transform to lowercase name card
+  const nameCardToLower = nameCard.toLowerCase();
+
+  Card.create({ numberCard, nameCard: nameCardToLower, categories, description }).then((newCards) => {
     // console.log(`Your Tarot card has been created`)
-    res.json(newCards)
-    // res.redirect('/cards');
+    res.redirect('/cards/create');
   });
 });
 
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
-  Card.findById(id).then(cardFromDB => {
+router.get('/:card', (req, res) => {
+  const { card } = req.params;
+
+  Card.find({ nameCard: card }).then(cardFromDB => {
     res.send(cardFromDB);
   });
 });

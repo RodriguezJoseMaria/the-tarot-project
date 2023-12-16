@@ -6,10 +6,11 @@ const cardSchema = new Schema(
             type: Number,
             required: true,
         },
-        
+
         nameCard: {
             type: String,
             required: true,
+            trim: true,
         },
 
         categories: {
