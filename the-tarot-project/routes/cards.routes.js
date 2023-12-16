@@ -22,8 +22,8 @@ router.post('/create', (req, res) => {
 
   Card.create({ numberCard, nameCard: nameCardToLower, categories, description }).then((newCards) => {
     // console.log(`Your Tarot card has been created`)
-    res.redirect('/cards/create');
-  });
+    res.redirect('/cards/create')
+  }).catch(err => console.log(err));
 });
 
 router.get('/:card', (req, res) => {
@@ -34,34 +34,34 @@ router.get('/:card', (req, res) => {
   });
 });
 
-router.get('/:id/edit', (req, res) => {
-  const { id } = req.params;
-  Card.findById(id).then(cardFromDB => {
+router.get('/:card/edit', (req, res) => {
+  const { card } = req.params;
+  Card.find({ nameCard: card }).then(cardFromDB => {
     res.render('cards/cards-edit', { cardFromDB });
   });
 });
 
-router.post('/:id/edit', (req, res) => {
+router.post('/:card/edit', (req, res) => {
   const { numberCard, nameCard, categories, description } = req.body
-  const { id } = req.params;
-  Card.findByIdAndUpdate(id, { numberCard, nameCard, categories, description }, { new: true })
+  const { card } = req.params;
+  Card.findByIdAndUpdate(card, { numberCard, nameCard, categories, description }, { new: true })
     .then(updateCardFromDB => {
       res.json(updateCardFromDB);
       // res.render('cards/cards-edit', {updateCardFromDB});
     })
 });
 
-router.get('/:id/delete', (req, res, next) => {
-  const { id } = req.params;
-  Card.findByIdAndDelete(id)
+router.get('/:card/delete', (req, res, next) => {
+  const { card } = req.params;
+  Card.findOneAndDelete({ nameCard: card })
     .then(() => {
       res.redirect('/cards')
     }).catch(err => next(err));
 });
 
-router.post('/:id/delete', (req, res, next) => {
-  const { id } = req.params;
-  Card.findByIdAndDelete(id)
+router.delete('/:card/delete', (req, res, next) => {
+  const { card } = req.params;
+  Card.findOneAndDelete({ nameCard: card })
     .then(() => {
       res.redirect('/cards')
     }).catch(err => next(err));

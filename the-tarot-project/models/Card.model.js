@@ -10,6 +10,7 @@ const cardSchema = new Schema(
         nameCard: {
             type: String,
             required: true,
+            unique: true,
             trim: true,
         },
 
