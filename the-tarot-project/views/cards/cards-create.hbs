@@ -1,10 +1,12 @@
-h1>Create a new Tarot cards</h1>
+<h1>Create a new Tarot cards</h1>
 
 {{!-- views/cards/cards-create.hbs --}}
 
-<h2>Create a book</h2>
-
 <form action="/cards/create" method="post">
+
+  <label> Name of Card:
+    <input type="text" name="namecard"/>
+  </label>
 
   <label> Categories:
     <input type="text" name="categories"/>
@@ -14,7 +16,7 @@ h1>Create a new Tarot cards</h1>
     <input type="text" name="starsign"/>
   </label>
 
-<label> Description:
+  <label> Description:
     <input type="text" name="description"/>
   </label>
 
