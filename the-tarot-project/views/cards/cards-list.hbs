@@ -1,0 +1,11 @@
+<h2>Tarot cards list</h2>
+
+<ul>
+{{#each allCards}}
+  <li>
+    <a href="/cards/{{this._id}}">
+      {{this.title}}
+    </a>
+  </li>
+{{/each}}
+</ul>
