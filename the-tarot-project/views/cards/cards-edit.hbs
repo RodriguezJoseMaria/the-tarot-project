@@ -1,18 +1,18 @@
 <h2>
-  Edit Card {{ title }}
+  Edit Card {{ nameCard }}
 </h2>
 
 <form action="/cards/edit" method="post">
 
   <input type="hidden" name="id" value="{{ id }}">
 
-  <label> Number of card:
+  {{!-- <label> Number of card:
     <input type="text" name="numbercard" value="{{ numbercard }}" />
   </label>
 
   <label> Name of card:
     <input type="text" name="namecard" value="{{ namecard }}" />
-  </label>
+  </label> --}}
 
   <label> Categories:
     <input type="text" name="categories" value="{{ categories }}" />
@@ -23,6 +23,7 @@
   </label>
 
   <button type="submit"> Edit </button>
+  <button type="submit"> Delete </button>
 </form>
 
 <hr>

@@ -5,8 +5,8 @@ const Card = require('../models/Card.model.js');
 // GET route to retrieve and display all the cards
 router.get('/', (req, res) => {
   Card.find().then(allCards => {
-    res.json(allCards);
-    // res.render('cards/cards-list.hbs', { cards });
+    // res.json(allCards);
+    res.render('cards/cards-list.hbs', { allCards });
   })
 });
 
@@ -29,8 +29,8 @@ router.post('/create', (req, res) => {
 router.get('/:card', (req, res) => {
   const { card } = req.params;
 
-  Card.find({ nameCard: card }).then(cardFromDB => {
-    res.send(cardFromDB);
+  Card.findOne({ slug: card  }).then(cardFromDB => {
+    res.render('cards/cards-detail', cardFromDB );
   });
 });
 
