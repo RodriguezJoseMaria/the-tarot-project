@@ -1,6 +1,6 @@
 const { Schema, model, default: mongoose } = require("mongoose");
-    slug = require ('mongoose-slug-updater');
-    mongoose.plugin(slug);
+const slug = require("mongoose-slug-updater");
+mongoose.plugin(slug);
 
 const cardSchema = new Schema(
     {
@@ -19,7 +19,7 @@ const cardSchema = new Schema(
 
         slug: {
             type: String, slug: "nameCard"
-    },
+        },
 
         categories: {
             type: [String, String, String],

@@ -5,10 +5,11 @@ const router = express.Router();
 router.get("/", (req, res, next) => {
   console.log(req.session);
 
-  if (req.session.email) {
-    return res.redirect("/dashboard");
+  if (!req.session.currentUser) {
+    return res.redirect("/auth/login");
   }
-  res.render("index");
+
+  res.render("dashboard/dashboard", { user: req.session.currentUser });
 });
 
 module.exports = router;
