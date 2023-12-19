@@ -1,33 +1,16 @@
 // routes/cards.routes.js
 const router = require('express').Router();
+const { getCards, createCard } = require('../controllers/cardController.js');
 const Card = require('../models/Card.model.js');
 
 // GET route to retrieve and display all the cards
-router.get('/', (req, res) => {
-  Card.find().then(allCards => {
-    // res.json(allCards);
-    res.render('cards/cards-list.hbs', { allCards });
-  })
-});
+router.get('/', getCards);
 
 router.get('/create', (req, res) => {
   res.render('cards/cards-create.hbs');
 });
 
-router.post('/create', (req, res) => {
-  const { numberCard, nameCard, categories, description } = req.body
-
-  // Transform into Array categories
-  const categoriesArray = categories.split(',');
-
-  // Transform to lowercase name card
-  const nameCardToLower = nameCard.toLowerCase();
-
-  Card.create({ numberCard, nameCard: nameCardToLower, categories: categoriesArray, description }).then((newCards) => {
-    // console.log(`Your Tarot card has been created`)
-    res.redirect('/cards/create')
-  }).catch(err => console.log(err));
-});
+router.post('/create', createCard);
 
 router.get('/:card', (req, res) => {
   const { card } = req.params;
