@@ -8,7 +8,7 @@ router.get("/", (req, res, next) => {
   if (req.session.email) {
     return res.redirect("/dashboard");
   }
-  res.render("index");
+  res.render("auth/login");
 });
 
 module.exports = router;

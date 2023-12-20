@@ -14,7 +14,6 @@ const cardSchema = new Schema(
             required: true,
             unique: true,
             trim: true,
-
         },
 
         slug: {
