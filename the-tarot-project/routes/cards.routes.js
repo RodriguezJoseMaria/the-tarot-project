@@ -22,18 +22,17 @@ router.get('/:card', (req, res) => {
 
 router.get('/:card/edit', (req, res) => {
   const { card } = req.params;
-  Card.find({ nameCard: card }).then(cardFromDB => {
-    res.render('cards/cards-edit', { cardFromDB });
+  Card.findOne({ nameCard: card }).then(cardFromDB => {
+    console.log(cardFromDB);
+    res.render('cards/cards-edit', cardFromDB);
   });
 });
 
-router.post('/:card/edit', (req, res) => {
-  const { numberCard, nameCard, categories, description } = req.body
-  const { card } = req.params;
-  Card.findByIdAndUpdate(card, { numberCard, nameCard, categories, description }, { new: true })
-    .then(updateCardFromDB => {
-      res.json(updateCardFromDB);
-      // res.render('cards/cards-edit', {updateCardFromDB});
+router.post('/edit', (req, res) => {
+  const { id, categories, description } = req.body
+  Card.findByIdAndUpdate(id, { categories, description }, { new: true })
+    .then(() => {
+      res.redirect('/cards');
     })
 });
 
