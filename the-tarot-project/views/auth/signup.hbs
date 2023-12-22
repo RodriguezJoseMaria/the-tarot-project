@@ -1,10 +1,6 @@
 <div id="form">
-  <h2>Sign Up</h2>
+  <h2>REGISTER</h2>
   <form action="/auth/signup" method="POST">
-
-    <label> Name
-      <input type="text" name="name" placeholder="Your name" />
-    </label>
 
     <label> Email
       <input type="email" name="email" placeholder="Your email" />
@@ -14,9 +10,17 @@
       <input type="password" name="password" placeholder="Your password" />
     </label>
 
+    <label> Name
+      <input type="text" name="name" placeholder="Your name" />
+    </label>
+
+    <label> Surname
+      <input type="text" name="surname" placeholder="Your surname" />
+    </label>
+
     <hr>
 
-    <button type="submit">Sign Up</button>
+    <button type="submit">CREATE ACCOUNT</button>
 
 
     {{#if errorMessage}}

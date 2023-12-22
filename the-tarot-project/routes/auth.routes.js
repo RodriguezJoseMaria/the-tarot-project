@@ -25,7 +25,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
   const { name, email, password } = req.body;
 
   // Check that name, email, and password are provided
-  if (name === "" || email === "" || password === "") {
+  if (email === "" || password === "" || name === "" || surname === "") {
     res.status(400).render("auth/signup", {
       errorMessage:
         "All fields are mandatory. Please provide your name, email and password.",
@@ -87,7 +87,7 @@ router.get("/login", isLoggedOut, (req, res) => {
 
 // POST /auth/login
 router.post("/login", isLoggedOut, (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { email, password } = req.body;
 
   // Check that username, email, and password are provided
   if (email === "" || password === "") {
