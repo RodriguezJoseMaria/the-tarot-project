@@ -1,6 +1,26 @@
-<h1>Welcome to Dashboard</h1>
+<h1>Tarot cards list</h1>
 
 <p>
   Hello {{ user.name }},
 </p>
 
+<hr>
+
+
+
+  <form action="/cards/cards-create.hbs" method="GET">
+  <button type="submit">CREATE YOUR CARD</button>
+  
+  </form>
+
+<hr>
+
+<ul>
+{{#each allCards}}
+  <li>
+    <a href="/cards/{{this.slug}}">
+      {{this.nameCard}}
+    </a>
+  </li>
+{{/each}}
+</ul>

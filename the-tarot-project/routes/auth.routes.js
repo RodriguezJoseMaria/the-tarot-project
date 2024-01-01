@@ -22,7 +22,7 @@ router.get("/signup", isLoggedOut, (req, res) => {
 
 // POST /auth/signup
 router.post("/signup", isLoggedOut, (req, res) => {
-  const { name, email, password } = req.body;
+  const { email, password, name, surname } = req.body;
 
   // Check that name, email, and password are provided
   if (email === "" || password === "" || name === "" || surname === "") {
@@ -134,7 +134,7 @@ router.post("/login", isLoggedOut, (req, res, next) => {
           // Remove the password field
           delete req.session.currentUser.password;
 
-          res.redirect("/dashboard");
+          res.redirect("/dashboard/dashboard");
         })
         .catch((err) => next(err)); // In this case, we send error handling to the error handling middleware.
     })
