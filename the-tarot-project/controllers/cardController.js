@@ -16,7 +16,7 @@ const createCard = async (req, res) => {
 
   await Card.create({ numberCard, nameCard, categories: categoriesArray, description }).then((newCards) => {
     console.log(`Your Tarot card has been created`)
-    res.redirect('/cards/create')
+    res.redirect('cards/cards-list.hbs')
   }).catch(err => console.log(err));
 }
 

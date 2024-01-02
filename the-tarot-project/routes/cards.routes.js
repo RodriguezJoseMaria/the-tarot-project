@@ -16,7 +16,7 @@ router.get('/:card', (req, res) => {
   const { card } = req.params;
 
   Card.findOne({ slug: card }).then(cardFromDB => {
-    res.render('cards/cards-edit', cardFromDB);
+    res.render('cards/cards-create.hbs', cardFromDB);
   });
 });
 
