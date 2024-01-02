@@ -7,7 +7,7 @@ const Card = require('../models/Card.model.js');
 router.get('/', getCards);
 
 router.get('/create', (req, res) => {
-  res.render('cards/cards-create.hbs');
+  res.render('cards/cards-create');
 });
 
 router.post('/create', createCard);
@@ -16,7 +16,7 @@ router.get('/:card', (req, res) => {
   const { card } = req.params;
 
   Card.findOne({ slug: card }).then(cardFromDB => {
-    res.render('cards/cards-create.hbs', cardFromDB);
+    res.render('cards/cards-create', cardFromDB);
   });
 });
 
