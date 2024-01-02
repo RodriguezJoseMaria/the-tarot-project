@@ -1,31 +1,39 @@
-<div id="login-form">
-  <h2>LOG IN TO YOUR ACCOUNT</h2>
-  <form action="/auth/login" method="POST">
+<div class="lg:h-screen bg-black text-orange-200 flex flex-col lg:flex-row" id="login-form">
+  <div class="p-8 flex-1 flex justify-center items-center">
+    <img src="/images/0_the_fool.jpg" alt="the fool" class="w-[400px]">
+  </div>
 
-    <label> E-mail
-      <input type="email" name="email" placeholder="Your e-mail" />
-    </label>
+  <div class="p-12 flex-1 flex flex-col justify-center items-center">
+    <div class="p-8 border-b-4 border-orange-200 w-full max-w-[400px]">
+      <h2 class="text-lg lg:text-xl font-bold py-4">LOG IN</h2>
+      <form action="/auth/login" method="POST">
 
-    <label> Password
-      <input type="password" name="password" placeholder="Your password" />
-    </label>
+        <label class="block py-2"> E-mail
+          <input class="w-full mt-2 p-2 block border-2 border-orange-200 bg-transparent placeholder:text-orange-50" type="email" name="email" placeholder="Your e-mail" />
+        </label>
 
-    <button type="submit">LOG IN</button>
+        <label class="block py-2"> Password
+          <input class="w-full mt-2 p-2 block border-2 border-orange-200 bg-transparent placeholder:text-orange-50" type="password" name="password" placeholder="Your password" />
+        </label>
+
+        <button type="submit" class="mt-4 px-4 py-1 border-2 border-orange-200">LOG IN</button>
 
 
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
+        {{#if errorMessage}}
+          <p class="error">{{errorMessage}}</p>
+        {{/if}}
+      </form>
+    </div>
 
-   <hr>
+    <div class="p-8 w-full max-w-[400px]">
+      <h2 class="text-lg lg:text-xl font-bold py-4">NEED AN ACCOUNT?</h2>
+      
+      <form action="/auth/signup" method="GET">
 
-  <h2>NEED AN ACCOUNT?</h2>
-  
-  <form action="/auth/signup" method="GET">
+      <button type="submit" class="mt-4 px-4 py-1 border-2 border-orange-200">REGISTER</button>
+      
+      </form>
+    </div>
 
-  <button type="submit">REGISTER</button>
-  
-  </form>
-
+  </div>
 </div>
