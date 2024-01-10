@@ -13,17 +13,10 @@ router.get('/create', isLoggedIn,  (req, res) => {
 
 router.post('/create', createCard);
 
-router.get('/:card', (req, res) => {
-  const { card } = req.params;
-
-  Card.findOne({ slug: card }).then(cardFromDB => {
-    res.render('cards/cards-create', cardFromDB);
-  });
-});
-
 router.get('/cards-list', isLoggedIn, (req, res) => {
-  Card.find({user: req.session.currentUser._id});
+  Card.find({user: req.session.currentUser._id}).then(cardFromDB => {
   res.render('cards/cards-list', cardFromDB);
+});
 });
 
 router.get('/:card/edit', isLoggedIn, (req, res) => {
@@ -56,6 +49,14 @@ router.delete('/:card/delete', isLoggedIn, (req, res, next) => {
     .then(() => {
       res.redirect('/cards')
     }).catch(err => next(err));
+});
+
+router.get('/:card', (req, res) => {
+  const { card } = req.params;
+
+  Card.findOne({ slug: card }).then(cardFromDB => {
+    res.render('cards/cards-create', cardFromDB);
+  });
 });
 
 module.exports = router;
