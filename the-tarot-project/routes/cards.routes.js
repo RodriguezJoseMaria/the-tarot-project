@@ -2,11 +2,12 @@
 const router = require('express').Router();
 const { getCards, createCard } = require('../controllers/cardController.js');
 const Card = require('../models/Card.model.js');
+const isLoggedIn = require('../middleware/isLoggedIn.js');
 
 // GET route to retrieve and display all the cards
 router.get('/', getCards);
 
-router.get('/create', (req, res) => {
+router.get('/create', isLoggedIn,  (req, res) => {
   res.render('cards/cards-create');
 });
 
@@ -20,7 +21,12 @@ router.get('/:card', (req, res) => {
   });
 });
 
-router.get('/:card/edit', (req, res) => {
+router.get('/cards-list', isLoggedIn, (req, res) => {
+  Card.find({user: req.session.currentUser._id});
+  res.render('cards/cards-list', cardFromDB);
+});
+
+router.get('/:card/edit', isLoggedIn, (req, res) => {
   const { card } = req.params;
   Card.findOne({ nameCard: card }).then(cardFromDB => {
     console.log(cardFromDB);
@@ -28,7 +34,7 @@ router.get('/:card/edit', (req, res) => {
   });
 });
 
-router.post('/edit', (req, res) => {
+router.post('/edit', isLoggedIn, (req, res) => {
   const { id, categories, description } = req.body
   Card.findByIdAndUpdate(id, { categories, description }, { new: true })
     .then(() => {
@@ -36,7 +42,7 @@ router.post('/edit', (req, res) => {
     })
 });
 
-router.get('/:card/delete', (req, res, next) => {
+router.get('/:card/delete', isLoggedIn, (req, res, next) => {
   const { card } = req.params;
   Card.findOneAndDelete({ nameCard: card })
     .then(() => {
@@ -44,7 +50,7 @@ router.get('/:card/delete', (req, res, next) => {
     }).catch(err => next(err));
 });
 
-router.delete('/:card/delete', (req, res, next) => {
+router.delete('/:card/delete', isLoggedIn, (req, res, next) => {
   const { card } = req.params;
   Card.findOneAndDelete({ nameCard: card })
     .then(() => {
