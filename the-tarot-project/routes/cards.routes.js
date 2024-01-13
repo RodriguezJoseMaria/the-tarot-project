@@ -59,4 +59,20 @@ router.get('/:card', (req, res) => {
   });
 });
 
+router.get('/:card/details', (req, res) => {
+  const { card } = req.params;
+
+  Card.findOne({ slug: card }).then(cardFromDB => {
+    res.render('cards/cards-details', cardFromDB);
+  });
+});
+
+router.get('/:card', (req, res) => {
+  const { card } = req.params;
+
+  Card.findOne({ slug: card }).then(cardFromDB => {
+    res.render('cards/cards-create', cardFromDB);
+  });
+});
+
 module.exports = router;
